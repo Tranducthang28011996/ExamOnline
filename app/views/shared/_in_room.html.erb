@@ -1,0 +1,89 @@
+<div class="header">
+  <ul class="top-nav">
+    <li class="logo-top-nav">
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-users">  Tìm phòng đấu</i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-graduation-cap">   Bảng xếp hạng</i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-clock-o">   Lịch sử thi đấu</i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-book">   Hướng dẫn</i>
+      <% end %>
+    </li>
+  </ul>
+  <ul class="top-nav pull-right">
+    <li class="user-avatar">
+      <%= image_tag "avatar.jpg"%>
+    </li>
+    <li>Tran Duc Thang</li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="content-exam row">
+      <div class="time-exam">
+        <div class="time-exam-lock">
+          <i class="fa fa-clock-o"></i>
+        </div>
+      </div>
+      <div class="image-exam">
+        <%= image_tag "question.png" %>
+      </div>
+      <div class="question-exam">
+        <span>Huyền có 20 bút chì màu, biết Huyền đã làm mất 4 chiếc bút chì màu. Số bút chì màu còn lại Huyền chia đều cho 2 em. Hỏi mỗi em có bao nhiêu bút chì màu?</span>
+      </div>
+      <div class="answer-exam">
+        <div class="answer-exam-left">
+          <div class="pointer"><span>5 Bút chì màu</span></div>
+          <div class="pointer"><span>6 Bút chì màu</span></div>
+        </div>
+        <div class="answer-exam-right">
+          <div class="pointer-two"><span>7 Bút chì màu</span></div>
+          <div class="pointer-two"><span>8 Bút chì màu</span></div>
+        </div>
+      </div>
+      <div class="totoal-question-exam">
+        <span>6/10</span>
+      </div>
+    </div>
+    <div class="rank row">
+      <div class="top-nav-rank">
+        <span>BẢNG XẾP HẠNG</span>
+      </div>
+      <div class="content-rank">
+        <div class="play-rank">
+          <span><b>1-</b> Tran Duc Thang  <b>(1996)</b></span>
+        </div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+        <div class="play-rank"></div>
+      </div>
+      <div class="footer-rank">
+
+      </div>
+    </div>
+  </div>
+</div>
+

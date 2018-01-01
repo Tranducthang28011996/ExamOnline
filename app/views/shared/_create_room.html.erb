@@ -1,0 +1,111 @@
+<div class="header">
+  <ul class="top-nav">
+    <li class="logo-top-nav">
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-users">  Tìm phòng đấu</i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-graduation-cap">   Bảng xếp hạng</i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-clock-o">   Lịch sử thi đấu</i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <i class="fa fa-book">   Hướng dẫn</i>
+      <% end %>
+    </li>
+  </ul>
+  <ul class="top-nav pull-right">
+    <li class="user-avatar">
+      <%= image_tag "avatar.jpg"%>
+    </li>
+    <li>Tran Duc Thang</li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="top-nav-content">
+    <ul class="title-list-room">
+      <li>TẠO PHÒNG THI ĐẤU</li>
+      <li class="pull-right">
+        <%= link_to root_path, class: "btn btn-primary" do %>
+          <i class="fa fa-user-plus">Thi Đấu</i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  <div class="content row">
+    <div class="list-room">
+      <div class="notice-new-room">
+        <span>Tạo phòng đấu mới bằng cách chọn hình thức thi đấu và khẩu hiệu phòng (có thể bỏ qua)</span>
+      </div>
+      <div class="new-room">
+        <div class="kind-room">
+          <span>CHỌN HÌNH THỨC THI ĐẤU</span>
+          <div class="kind_play">
+            <input type="radio" name="kindroom">  Đối kháng (1 vs 1)<br>
+           &nbsp;&nbsp; &nbsp;Đấu với 1 người chơi khác
+          </div>
+          <div class="kind_play">
+            <input type="radio" name="kindroom">  Đấu tập thể (1 vs 9)<br>
+           &nbsp;&nbsp;&nbsp; Đấu với 9 người chơi khác
+          </div>
+          <div class="row class-subject">
+            <div class="form-group col-md-5">
+              <select class="form-control" id="sel1">
+                <option>Lớp</option>
+                <option>Lớp 1</option>
+                <option>Lớp 2</option>
+                <option>Lớp 3</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <select class="form-control" id="sel1">
+                <option>Toán lớp 1</option>
+                <option>Tiếng việt lớp 1</option>
+                <option>Tiếng Anh 1</option>
+                <option>Tiếng Anh 2</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group lock-room">
+            <input type="checkbox" name="">
+            &nbsp;&nbsp;<span>Phòng thi đấu riêng</span>
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          </div>
+          <div class="footer-new-room">
+            <div class="btn-new-room">
+              <button class="btn btn-success">Tạo phòng</button>
+            </div>
+            <div class="btn-close-room">
+              <button class="btn btn-danger">Thoát</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat">
+      <div class="top-nav-chat">
+        <span>Nhắn tin</span>
+      </div>
+      <div class="content-chat">
+
+      </div>
+      <div class="footer-chart">
+
+      </div>
+    </div>
+  </div>
+</div>
+

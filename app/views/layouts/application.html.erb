@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ExamOnline</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag "favicon.ico" %>
+  </head>
+
+  <body>
+    <%#= render "shared/header" %>
+    <%#= render "shared/create_room" %>
+    <%#= render "shared/waiting_room" %>
+    <%#= render "shared/in_room" %>
+    <%= render "shared/login_form" %>
+    <div class="">
+      <%= yield %>
+    </div>
+  </body>
+</html>
