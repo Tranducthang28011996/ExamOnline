@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root to: "static_pages#show"
+  devise_for :users
+  root to: "rooms#index"
+  resources :rooms
 end

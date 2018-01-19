@@ -10,13 +10,17 @@
   </head>
 
   <body>
-    <%#= render "shared/header" %>
+    <% if user_signed_in? %>
+    <%= render "shared/header" %>
     <%#= render "shared/create_room" %>
     <%#= render "shared/waiting_room" %>
     <%#= render "shared/in_room" %>
-    <%= render "shared/login_form" %>
-    <div class="">
+    <% end %>
+    <div class="container">
       <%= yield %>
     </div>
+    <%#= render "shared/login_form" %>
+<%#= link_to "logout", destroy_user_session_path, method: :delete %>
+
   </body>
 </html>

@@ -1,0 +1,153 @@
+<div class="top-nav-content">
+  <ul class="title-list-room">
+    <li>DANH SÁCH PHÒNG THI ĐẤU</li>
+    <li class="pull-right">
+      <%= link_to new_room_path, class: "btn btn-primary" do %>
+        <i class="fa fa-user-plus">  Tạo Phòng</i>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div class="content row">
+  <div class="list-room">
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'all-room')" id="defaultOpen">Tất cả</button>
+      <button class="tablinks" onclick="openCity(event, 'room-1-vs-1')">1 vs 1</button>
+      <button class="tablinks" onclick="openCity(event, 'room-1-vs-9')">1 vs 9</button>
+      <div class="form-group col-md-3">
+        <select class="form-control" id="sel1">
+          <option>Tất cả các lớp</option>
+          <option>Lớp 1</option>
+          <option>Lớp 2</option>
+          <option>Lớp 3</option>
+        </select>
+      </div>
+      <div class="search-room">
+        <input type="text" class="search" placeholder="Search for names..">
+      </div>
+    </div>
+
+    <div id="all-room" class="tabcontent">
+      <table class="table table-bordered">
+        <thead>
+          <th>Số</th>
+            <th>Chủ phòng</th>
+            <th>Tên phòng</th>
+            <th>Loại phòng</th>
+            <th>Môn</th>
+            <th>Số người</th>
+            <th>Trạng thái</th>
+        </thead>
+        <% @rooms.each do |room| %>
+          <tbody>
+            <tr>
+              <th scope="row"><%= room.id %></th>
+              <td><%= owner_room room.owner %></td>
+              <td>
+                <%= link_to room.name, room_path(room) %>
+              </td>
+              <td><%= kind_room room.user_quantity %></td>
+              <td><%= class_room_name room.class_room_id %></td>
+              <td><%= subject_name room.subject_id %></td>
+              <td>1/9</td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+
+    <div id="room-1-vs-1" class="tabcontent">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Số</th>
+            <th>Chủ phòng</th>
+            <th>Tên phòng</th>
+            <th>Loại phòng</th>
+            <th>Số người</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@TwBootstrap</td>
+            <td>@TwBootstrap</td>
+            <td>@TwBootstrap</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="room-1-vs-9" class="tabcontent">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Số</th>
+            <th>Chủ phòng</th>
+            <th>Tên phòng</th>
+            <th>Loại phòng</th>
+            <th>Môn</th>
+            <th>Số người</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>Đấu tập thể</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>Đôi kháng</td>
+            <td>@TwBootstrap</td>
+            <td>@TwBootstrap</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="chat">
+    <div class="top-nav-chat">
+      <span>Chat All</span>
+    </div>
+    <div class="content-chat">
+
+    </div>
+    <div class="footer-chart">
+
+    </div>
+  </div>
+</div>
