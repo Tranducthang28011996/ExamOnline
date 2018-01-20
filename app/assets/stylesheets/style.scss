@@ -5,7 +5,7 @@ body{
 }
 
 .header {
-  width: 1318px;
+  width: 1198px;
   background-color: #ec5b50;
   height: 64px;
   margin-top: -10px;
@@ -457,4 +457,9 @@ body{
   text-align: center;
   line-height: 34px;
   margin-top: 10px;
+}
+
+#room-1-vs-1,
+#room-1-vs-9{
+  display: none;
 }

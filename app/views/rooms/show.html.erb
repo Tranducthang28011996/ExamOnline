@@ -1,0 +1,49 @@
+<div class="container">
+<div class="top-nav-content">
+  <ul class="title-list-room">
+    <li>PHÒNG ĐẤU SỐ 1 (1 VS 9)</li>
+  </ul>
+</div>
+<div class="content row">
+  <div class="list-room waiting-room">
+    <div class="list-btn-inroom">
+      <div class="total-player-room">
+        <span>Số người chờ 10/10</span>
+      </div>
+      <div class="close-room">
+        <% if @room.following.size == 1 %>
+          <%= link_to "Rời phòng", room_path(@room), method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= link_to "Rời phòng",unfollow_room_path, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+      <div class="start-room">
+        <button class="btn btn-success">Sẵn sàng</button>
+      </div>
+    </div>
+    <div class="player-inroom">
+      <% @room.following.each do |user| %>
+        <div class="player" id= "user-<%= user.id %>">
+          <div class="image-player">
+            <%= image_tag "avatar.jpg" %>
+          </div>
+          <div class="text-center"><strong><%= user.name %></strong></div>
+          <div class="user-win"><span>1996</span></div>
+          <div class="text-center"><span>TRẬN THẮNG</span></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="chat">
+    <div class="top-nav-chat">
+      <span>Nhắn tin</span>
+    </div>
+    <div class="content-chat">
+
+    </div>
+    <div class="footer-chart">
+
+    </div>
+  </div>
+</div>
+</div>

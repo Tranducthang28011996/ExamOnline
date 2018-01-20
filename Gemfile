@@ -17,8 +17,11 @@ gem "jbuilder", "~> 2.5"
 gem "redis", "~> 3.0"
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "devise"
 
 group :development, :test do
+  gem "pry"
+  gem "pry-byebug"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"
   gem "selenium-webdriver"

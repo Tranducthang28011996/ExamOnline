@@ -1,0 +1,71 @@
+<div class="container">
+<div class="top-nav-content">
+  <ul class="title-list-room">
+    <li>TẠO PHÒNG THI ĐẤU</li>
+    <li class="pull-right">
+      <%= link_to root_path, class: "btn btn-primary" do %>
+        <i class="fa fa-user-plus">Thi Đấu</i>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div class="content row">
+  <div class="list-room">
+    <%= form_for @room do |f| %>
+      <div class="notice-new-room">
+        <span>Tạo phòng đấu mới bằng cách chọn hình thức thi đấu và khẩu hiệu phòng (có thể bỏ qua)</span>
+      </div>
+      <div class="new-room">
+        <div class="kind-room">
+          <span>CHỌN HÌNH THỨC THI ĐẤU</span>
+          <div class="kind_play">
+           Đối kháng (1 vs 1)<br>
+            <%= f.radio_button :user_quantity, '2', :checked => true %>
+           &nbsp;&nbsp; &nbsp;Đấu với 1 người chơi khác
+          </div>
+          <div class="kind_play">
+            Đấu tập thể (1 vs 9)<br>
+            <%= f.radio_button :user_quantity, '10' %>
+           &nbsp;&nbsp;&nbsp; Đấu với 9 người chơi khác
+          </div>
+          <div class="row class-subject">
+            <div class="form-group col-md-5">
+              <%= f.select :class_room_id, options_for_select(ClassRoom.all.map{|x| [x.name, x.id]}),{}, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.select :subject_id, options_for_select(ClassRoom.last.subjects.map{|x| [x.name, x.id]}),{}, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-11">
+              <%= f.text_field :name, placeholder: "Enter name room..", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group lock-room">
+            <input type="checkbox" name="">
+            &nbsp;&nbsp;<span>Phòng thi đấu riêng</span>
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          </div>
+          <div class="footer-new-room">
+            <div class="btn-new-room">
+              <button class="btn btn-success">Tạo phòng</button>
+            </div>
+            <div class="btn-close-room">
+              <button class="btn btn-danger">Thoát</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="chat">
+    <div class="top-nav-chat">
+      <span>Nhắn tin</span>
+    </div>
+    <div class="content-chat">
+
+    </div>
+    <div class="footer-chart">
+
+    </div>
+  </div>
+</div>
+</div>
