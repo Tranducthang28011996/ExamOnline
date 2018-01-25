@@ -18,6 +18,7 @@
 
   <%= form_for(resource, as: resource_name, html: {class: "register-form"}, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
+      <%= f.text_field :name, placeholder: "Name" %>
       <%= f.text_field :email, placeholder: "Email" %>
       <%= f.password_field :password, placeholder: "password", autocomplete: "off" %>
       <%= f.password_field :password_confirmation, placeholder: "password confirmation", autocomplete: "off" %>

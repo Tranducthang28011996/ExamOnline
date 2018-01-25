@@ -1,3 +1,4 @@
+<div class="container">
 <div class="top-nav-content">
   <ul class="title-list-room">
     <li>TẠO PHÒNG THI ĐẤU</li>
@@ -19,12 +20,12 @@
           <span>CHỌN HÌNH THỨC THI ĐẤU</span>
           <div class="kind_play">
            Đối kháng (1 vs 1)<br>
-            <%= f.radio_button :user_quantity, '1', :checked => true %>
+            <%= f.radio_button :user_quantity, '2', :checked => true %>
            &nbsp;&nbsp; &nbsp;Đấu với 1 người chơi khác
           </div>
           <div class="kind_play">
             Đấu tập thể (1 vs 9)<br>
-            <%= f.radio_button :user_quantity, '9' %>
+            <%= f.radio_button :user_quantity, '10' %>
            &nbsp;&nbsp;&nbsp; Đấu với 9 người chơi khác
           </div>
           <div class="row class-subject">
@@ -66,4 +67,5 @@
 
     </div>
   </div>
+</div>
 </div>
