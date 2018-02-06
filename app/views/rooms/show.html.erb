@@ -18,13 +18,7 @@
         <% end %>
       </div>
       <div class="start-room">
-        <% if @room.owner != current_user.id %>
-          <% if get_relationship_id(current_user).status == 0 %>
-            <%= link_to "Sẵn sàng", relationship_path(get_relationship_id(current_user), status: 1), method: :patch, class: "btn btn-success" %>
-          <% else %>
-            <%= link_to "Không sẵn sàng", relationship_path(get_relationship_id(current_user), status: 0), method: :patch, class: "btn btn-success" %>
-          <% end %>
-        <% end %>
+        <%= render partial: "status_user_in_room", locals: {room: @room} %>
       </div>
     </div>
     <div class="player-inroom">
