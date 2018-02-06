@@ -260,7 +260,7 @@ body{
 }
 
 .user-win {
-  height: 57px;
+  height: 43px;
   font-size: 33px;
   text-align: center;
 }
@@ -462,4 +462,38 @@ body{
 #room-1-vs-1,
 #room-1-vs-9{
   display: none;
+}
+
+.user-ready {
+  width: 78px;
+  height: 18px;
+  position: relative;
+  background: #65b24a;
+}
+
+.user-ready:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+}
+
+.user-ready:before {
+  content: "";
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid #65b24a;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+}
+
+.name-user {
+  // margin-top: 17px;
 }

@@ -31,7 +31,9 @@ class RoomsController < ApplicationController
 
     if room.following? current_user
       room.unfollow current_user
-      room.update_attributes owner: room.following.first.id if current_user.id == room.owner
+      if current_user.id == room.owner
+        room.update_attributes owner: room.following.first.id
+      end
       redirect_to root_path
     end
   end

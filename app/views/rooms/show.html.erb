@@ -8,7 +8,7 @@
   <div class="list-room waiting-room">
     <div class="list-btn-inroom">
       <div class="total-player-room">
-        <span>Số người chờ 10/10</span>
+        <span>Số người chờ <%= @room.following.count %>/<%= @room.user_quantity %></span>
       </div>
       <div class="close-room">
         <% if @room.following.size == 1 %>
@@ -18,16 +18,27 @@
         <% end %>
       </div>
       <div class="start-room">
-        <button class="btn btn-success">Sẵn sàng</button>
+        <% if @room.owner != current_user.id %>
+          <% if get_relationship_id(current_user).status == 0 %>
+            <%= link_to "Sẵn sàng", relationship_path(get_relationship_id(current_user), status: 1), method: :patch, class: "btn btn-success" %>
+          <% else %>
+            <%= link_to "Không sẵn sàng", relationship_path(get_relationship_id(current_user), status: 0), method: :patch, class: "btn btn-success" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="player-inroom">
-      <% @room.following.each do |user| %>
+      <% @room.following.order(:created_at).reverse.each do |user| %>
         <div class="player" id= "user-<%= user.id %>">
           <div class="image-player">
             <%= image_tag "avatar.jpg" %>
           </div>
-          <div class="text-center"><strong><%= user.name %></strong></div>
+          <div style="height: 21px">
+            <% if (@room.owner != user.id) && (get_relationship_id(user).status == 1) %>
+              <div class="user-ready"><span>Sẵn sàng</span></div>
+            <% end %>
+          </div>
+          <div class="text-center name-user"><strong><%= user.name %></strong></div>
           <div class="user-win"><span>1996</span></div>
           <div class="text-center"><span>TRẬN THẮNG</span></div>
         </div>

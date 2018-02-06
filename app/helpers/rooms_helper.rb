@@ -18,4 +18,8 @@ module RoomsHelper
   def status_room room
     "#{room.following.size}/#{room.user_quantity}"
   end
+
+  def get_relationship_id user
+    Relationship.find_by followed_id: user
+  end
 end
