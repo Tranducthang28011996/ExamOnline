@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128051809) do
+ActiveRecord::Schema.define(version: 20180208113445) do
+
+  create_table "answsers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "name"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answsers_on_question_id"
+  end
+
+  create_table "class_room_subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "class_room_id"
+    t.bigint "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["class_room_id"], name: "index_class_room_subjects_on_class_room_id"
+    t.index ["subject_id"], name: "index_class_room_subjects_on_subject_id"
+  end
 
   create_table "class_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exames", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,6 +48,16 @@ ActiveRecord::Schema.define(version: 20180128051809) do
     t.boolean "ready"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "name"
+    t.bigint "subject_id"
+    t.bigint "exame_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exame_id"], name: "index_questions_on_exame_id"
+    t.index ["subject_id"], name: "index_questions_on_subject_id"
   end
 
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -50,12 +82,18 @@ ActiveRecord::Schema.define(version: 20180128051809) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "scores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "point"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_scores_on_user_id"
+  end
+
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "class_room_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["class_room_id"], name: "index_subjects_on_class_room_id"
   end
 
   create_table "user_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -87,7 +125,12 @@ ActiveRecord::Schema.define(version: 20180128051809) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "subjects", "class_rooms"
+  add_foreign_key "answsers", "questions"
+  add_foreign_key "class_room_subjects", "class_rooms"
+  add_foreign_key "class_room_subjects", "subjects"
+  add_foreign_key "questions", "exames"
+  add_foreign_key "questions", "subjects"
+  add_foreign_key "scores", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end

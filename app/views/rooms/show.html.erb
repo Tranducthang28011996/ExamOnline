@@ -27,7 +27,7 @@
           <div class="image-player">
             <%= image_tag "avatar.jpg" %>
           </div>
-          <div style="height: 21px">
+          <div class="parent-user-ready"style="height: 21px">
             <% if (@room.owner != user.id) && (get_relationship_id(user).status == 1) %>
               <div class="user-ready"><span>Sẵn sàng</span></div>
             <% end %>

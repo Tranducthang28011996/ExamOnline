@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :relationships
   resources :rooms do
     member do
+      resources :exames
       get :unfollow
     end
   end

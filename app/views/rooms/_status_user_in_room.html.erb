@@ -1,9 +1,9 @@
 <% if room.owner != current_user.id %>
   <% if get_relationship_id(current_user).status == 0 %>
-    <%#= link_to "Sẵn sàng", relationship_path(get_relationship_id(current_user), status: 1), method: :patch, class: "btn btn-success follow" %>
     <button class="btn btn-success follow" data-relation-id="<%= get_relationship_id(current_user).id %>">Sẵn sàng</button>
   <% else %>
     <button class="btn btn-success unfollow"data-relation-id="<%= get_relationship_id(current_user).id %>">Không sẵn sàng</button>
-    <%#= link_to "Không sẵn sàng", relationship_path(get_relationship_id(current_user), status: 0), method: :patch, class: "btn btn-success follow" %>
   <% end %>
+<% else %>
+  <%= link_to "Bắt đầu",exames_path, class: "btn btn-success" %>
 <% end %>
