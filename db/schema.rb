@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208113445) do
+ActiveRecord::Schema.define(version: 20180211044030) do
 
   create_table "answsers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "name"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20180208113445) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "exame_questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "exame_id"
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exame_id"], name: "index_exame_questions_on_exame_id"
+    t.index ["question_id"], name: "index_exame_questions_on_question_id"
+  end
+
   create_table "exames", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,10 +62,8 @@ ActiveRecord::Schema.define(version: 20180208113445) do
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "name"
     t.bigint "subject_id"
-    t.bigint "exame_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exame_id"], name: "index_questions_on_exame_id"
     t.index ["subject_id"], name: "index_questions_on_subject_id"
   end
 
@@ -110,6 +117,8 @@ ActiveRecord::Schema.define(version: 20180208113445) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.integer "victory", default: 0
+    t.integer "lose", default: 0
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -128,7 +137,8 @@ ActiveRecord::Schema.define(version: 20180208113445) do
   add_foreign_key "answsers", "questions"
   add_foreign_key "class_room_subjects", "class_rooms"
   add_foreign_key "class_room_subjects", "subjects"
-  add_foreign_key "questions", "exames"
+  add_foreign_key "exame_questions", "exames"
+  add_foreign_key "exame_questions", "questions"
   add_foreign_key "questions", "subjects"
   add_foreign_key "scores", "users"
   add_foreign_key "user_rooms", "rooms"
