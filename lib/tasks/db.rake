@@ -26,4 +26,19 @@ namespace :db do
 
     puts "Create ok!!!!!!!!!!!!"
   end
+
+  task remake_exames: :environmnet do
+    if Rails.env.production?
+      puts "Not running in 'Production' task."
+    else
+      (1..5).each do
+        Exame.create
+      end
+      Exame.all.each do |ex|
+        (1..10).each do |i|
+          ex.questions.create name: "Cau #{i}-#{ex.id}", subject_id:
+        end
+      end
+    end
+  end
 end

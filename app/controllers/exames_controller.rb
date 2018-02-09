@@ -6,4 +6,10 @@ class ExamesController < ApplicationController
   def show
 
   end
+
+  private
+
+  def make_exame
+
+  end
 end
