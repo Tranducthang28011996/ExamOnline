@@ -2,8 +2,11 @@
   <% if get_relationship_id(current_user).status == 0 %>
     <button class="btn btn-success follow" data-relation-id="<%= get_relationship_id(current_user).id %>">Sẵn sàng</button>
   <% else %>
-    <button class="btn btn-success unfollow"data-relation-id="<%= get_relationship_id(current_user).id %>">Không sẵn sàng</button>
+    <button class="btn btn-success unfollow" data-relation-id="<%= get_relationship_id(current_user).id %>">Không sẵn sàng</button>
   <% end %>
 <% else %>
-  <%= link_to "Bắt đầu",exames_path, class: "btn btn-success" %>
+  <%#= link_to "Bắt đầu",'#', class: "btn btn-success start-game", data: {room: room.id} %>
+  <button class="btn btn-success start-game" data-room="<%= room.id %>">
+    Bắt đầu
+  </button>
 <% end %>

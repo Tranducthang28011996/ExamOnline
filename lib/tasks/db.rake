@@ -23,7 +23,30 @@ namespace :db do
         end
       end
     end
+    # Tao bai thi va cau hoi
+    if Rails.env.production?
+      puts "Not running in 'Production' task."
+    else
+      (1..5).each do
+        Exame.create
+      end
+      Exame.all.each do |ex|
+        (1..10).each do |i|
+          # (1..5).each do |i2|
+            ex.questions.create name: "Cau #{i}-#{ex.id}", subject_id: 1
+          # end
+        end
+      end
+    end
+    # Tao cau hoi
 
     puts "Create ok!!!!!!!!!!!!"
   end
+
+  # task remake_exames: :environment do
+  # end
+
+  # task remake_anwser: :environmnet doe
+
+  # end
 end
