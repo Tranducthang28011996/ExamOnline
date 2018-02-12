@@ -1,11 +1,16 @@
 class RoomsController < ApplicationController
+  include RoomsHelper
   before_action :check_show_roo, only: :show
-
   def index
     @rooms = Room.all
   end
 
-  def show; end
+  def show
+    binding.pry
+    if get_relationship_id(current_user).status.nil?
+      get_relationship_id(current_user).update status: 0
+    end
+  end
 
   def new
     if Relationship.pluck(:followed_id).include? current_user.id
@@ -49,7 +54,6 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit :user_quantity, :class_room_id, :subject_id, :name
   end
-
 
   def check_show_roo
     @room = Room.find_by id: params[:id]

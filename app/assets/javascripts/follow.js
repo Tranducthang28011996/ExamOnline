@@ -24,7 +24,7 @@ $(document).ready(function(){
         id: relation_id,
         status: 0
       },success: function(result) {
-        $('.start-room').html(result.html);
+        console.log(result)
       }
     });
   });

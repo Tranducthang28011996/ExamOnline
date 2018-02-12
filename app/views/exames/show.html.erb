@@ -9,7 +9,7 @@
       <div class="image-exam">
         <%= image_tag "question.png" %>
       </div>
-      <div class="question-exam">
+      <div class="question-exam" data-number-room="<%= @number_room %>">
         <span>Huyền có 20 bút chì màu, biết Huyền đã làm mất 4 chiếc bút chì màu. Số bút chì màu còn lại Huyền chia đều cho 2 em. Hỏi mỗi em có bao nhiêu bút chì màu?</span>
       </div>
       <div class="answer-exam">
@@ -50,3 +50,40 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  function loadQuestion() {
+    var id_room = $('.question-exam').data('number-room');
+    if ((sessionStorage.getItem("check_incre") == "true")){
+      var tpm = parseInt(sessionStorage.getItem("number_question")) + 1;
+      sessionStorage.setItem("number_question", tpm);
+      console.log(tpm);
+    }else {
+      sessionStorage.setItem("number_question", 1);
+      sessionStorage.setItem("check_incre", true);
+      console.log(sessionStorage.getItem("number_question"));
+    }
+    $.ajax({
+      url: '/rooms/' + id_room + '/exames',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        status: true,
+        i: sessionStorage.getItem("number_question"),
+        exame_id: sessionStorage.getItem("exame_id")
+      },success: function(result) {
+        if(result.status == "1"){
+          window.location.replace(result.url);
+        }else{
+          $('.question-exam span').html(result.question);
+        }
+      }
+    });
+  }
+  setInterval(function(){
+    if(sessionStorage.getItem("number_question") == 10){
+      sessionStorage.clear();
+    }else {
+      loadQuestion();
+    }
+  }, 5000);
+</script>
