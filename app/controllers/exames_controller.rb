@@ -1,20 +1,17 @@
 class ExamesController < ApplicationController
-  before_action :make_exame, only: :show
-  # after_action :make_question, only: :show
-
+  before_action :all_user_is_start?
   def show
-    @question = @exame.questions.first
     @number_room = params[:id]
     if request.xhr?
       if params[:i].to_i == 10
         render json: {
-          url: root_path, status: 1
+          url: result_room_path, status: 1
         }
       else
-        exame_id = 1
-        @question = @exame.questions[params[:i].to_i]
+        room = Room.find_by id: @number_room
+        @question = (Exame.where id: room.exame_id).last.questions.get_questions room.subject_id, room.class_room_id
         render json: {
-          question: @question.name, exame_id: exame_id
+          question: @question[params[:i].to_i].name
         }
       end
     end
@@ -27,11 +24,11 @@ class ExamesController < ApplicationController
     end
   end
 
+  def result; end
+
   private
 
-  def make_exame
-    # if params[:status].nil?
-      @exame = Exame.offset(rand(Exame.count)).first if Exame.present?
-    # end
+  def all_user_is_start?
+    binding.pry
   end
 end

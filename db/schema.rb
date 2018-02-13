@@ -62,8 +62,10 @@ ActiveRecord::Schema.define(version: 20180211044030) do
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "name"
     t.bigint "subject_id"
+    t.bigint "class_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["class_room_id"], name: "index_questions_on_class_room_id"
     t.index ["subject_id"], name: "index_questions_on_subject_id"
   end
 
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20180211044030) do
     t.integer "user_quantity"
     t.integer "class_room_id"
     t.integer "subject_id"
+    t.integer "exame_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -139,6 +142,7 @@ ActiveRecord::Schema.define(version: 20180211044030) do
   add_foreign_key "class_room_subjects", "subjects"
   add_foreign_key "exame_questions", "exames"
   add_foreign_key "exame_questions", "questions"
+  add_foreign_key "questions", "class_rooms"
   add_foreign_key "questions", "subjects"
   add_foreign_key "scores", "users"
   add_foreign_key "user_rooms", "rooms"

@@ -1,11 +1,10 @@
 <% if room.owner != current_user.id %>
   <% if get_relationship_id(current_user).status == 0 %>
-    <button class="btn btn-success follow" data-relation-id="<%= get_relationship_id(current_user).id %>">Sẵn sàng</button>
+    <button class="btn btn-success follow follow-un" data-relation-id="<%= get_relationship_id(current_user).id %>">Sẵn sàng</button>
   <% else %>
-    <button class="btn btn-success unfollow" data-relation-id="<%= get_relationship_id(current_user).id %>">Không sẵn sàng</button>
+    <button class="btn btn-success unfollow follow-un" data-relation-id="<%= get_relationship_id(current_user).id %>">Không sẵn sàng</button>
   <% end %>
 <% else %>
-  <%#= link_to "Bắt đầu",'#', class: "btn btn-success start-game", data: {room: room.id} %>
   <button class="btn btn-success start-game" data-room="<%= room.id %>">
     Bắt đầu
   </button>

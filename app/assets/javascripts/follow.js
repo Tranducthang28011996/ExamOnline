@@ -9,7 +9,8 @@ $(document).ready(function(){
         id: relation_id,
         status: 1
       },success: function(result) {
-        $('.start-room').html(result.html);
+        $('.start-room').html('');
+        $('.start-room').append(result.html);
       }
     });
   });
@@ -24,7 +25,8 @@ $(document).ready(function(){
         id: relation_id,
         status: 0
       },success: function(result) {
-        console.log(result)
+        $('.start-room').html('');
+        $('.start-room').append(result.html);
       }
     });
   });
