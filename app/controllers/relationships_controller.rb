@@ -1,7 +1,7 @@
 class RelationshipsController < ApplicationController
   def update
     @relationship = Relationship.find_by id: params[:id]
-    if @relationship
+    if @relationship && request.xhr?
       @relationship.update_attributes status: params[:status]
       room = Room.find_by id: @relationship.follower_id
       render json: {

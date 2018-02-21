@@ -15,11 +15,13 @@ namespace :db do
         ClassRoom.create name: "Lop-#{i}"
       end
 
-      subjects = ["Toan", "Tieng Viet", "Tieng Anh"]
+      ["Toan", "Tieng Viet", "Tieng Anh"].each do |subject|
+        Subject.create name: subject
+      end
 
       ClassRoom.all.each do |cl|
-        subjects.each do |subject|
-          cl.subjects.create name: subject
+        Subject.all.each do |sub|
+          ClassRoomSubject.create class_room_id: cl.id, subject_id: sub.id
         end
       end
     end
@@ -32,13 +34,14 @@ namespace :db do
       end
       Exame.all.each do |ex|
         (1..10).each do |i|
-          # (1..5).each do |i2|
-            ex.questions.create name: "Cau #{i}-#{ex.id}", subject_id: 1
-          # end
+          Subject.all.each do |sub|
+            ClassRoom.all.each do |cl|
+              ex.questions.create name: "Huyền có #{20 + i} bút chì màu, biết Huyền đã làm mất 4 chiếc bút chì màu. Hỏi Huyền còn bao nhiêu bút chì màu?", subject_id: sub.id, class_room_id: cl.id
+            end
+          end
         end
       end
     end
-    # Tao cau hoi
 
     puts "Create ok!!!!!!!!!!!!"
   end

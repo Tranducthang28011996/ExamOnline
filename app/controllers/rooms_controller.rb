@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
   include RoomsHelper
   before_action :check_show_roo, only: :show
+  before_action :make_exame, only: :create
+
   def index
     @rooms = Room.all
   end
@@ -21,7 +23,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = current_user.rooms.new room_params
+    @room = current_user.rooms.new room_params.merge(exame_id: @exame.id)
     @room.owner = current_user.id
     if @room.save
       redirect_to @room
@@ -32,10 +34,9 @@ class RoomsController < ApplicationController
 
   def unfollow
     room = Room.find_by id: params[:id]
-
     if room.following? current_user
       room.unfollow current_user
-      if current_user.id == room.owner
+      if current_user.id == room.owner && room.following.size > 1
         room.update_attributes owner: room.following.first.id
       end
       redirect_to root_path
@@ -54,7 +55,6 @@ class RoomsController < ApplicationController
     params.require(:room).permit :user_quantity, :class_room_id, :subject_id, :name
   end
 
-
   def check_show_roo
     @room = Room.find_by id: params[:id]
     return redirect_to root_path unless @room
@@ -71,5 +71,9 @@ class RoomsController < ApplicationController
     if !@room.following? current_user
       @room.follow current_user
     end
+  end
+
+  def make_exame
+    @exame = Exame.offset(rand(Exame.count)).last if Exame.present?
   end
 end
