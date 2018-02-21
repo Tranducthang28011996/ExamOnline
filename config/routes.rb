@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     member do
       resource :exames
       post 'start', to: "exames#start_game"
-      get :unfollow
+      get 'result', to: "exames#result"
     end
   end
 end

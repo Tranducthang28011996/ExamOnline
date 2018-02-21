@@ -22,19 +22,19 @@
       </div>
     </div>
     <div class="player-inroom">
-      <% @room.following.order(:created_at).reverse.each do |user| %>
-        <div class="player" id= "user-<%= user.id %>">
+      <% @room.following.order(:created_at).each do |user| %>
+        <div class="player status_user_in_room-<%= user.id %>" id= "user-<%= user.id %>">
           <div class="image-player">
             <%= image_tag "avatar.jpg" %>
           </div>
-          <div class="parent-user-ready"style="height: 21px">
-            <% if (@room.owner != user.id) && (get_relationship_id(user).status == 1) %>
-              <div class="user-ready"><span>Sẵn sàng</span></div>
-            <% end %>
-          </div>
           <div class="text-center name-user"><strong><%= user.name %></strong></div>
-          <div class="user-win"><span>1996</span></div>
+          <div class="user-win"><span><%= user.victory %></span></div>
           <div class="text-center"><span>TRẬN THẮNG</span></div>
+          <% if (@room.owner != user.id) && (get_relationship_id(user).status == 1) %>
+            <div class="parent-user-ready" style="height: 21px">
+              <div class="user-ready"><span>Sẵn sàng</span></div>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>
