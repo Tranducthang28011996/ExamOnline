@@ -8,6 +8,7 @@ $(document).ready(function(){
       data: {
         id: id
       },success: function(result) {
+        console.log('ok');
       }
     });
   });

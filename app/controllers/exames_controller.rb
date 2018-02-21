@@ -1,4 +1,5 @@
 class ExamesController < ApplicationController
+
   before_action :all_user_is_start?
   def show
     @number_room = params[:id]
@@ -29,6 +30,12 @@ class ExamesController < ApplicationController
   private
 
   def all_user_is_start?
-    binding.pry
   end
+
+  private
+
+  def make_exame
+    @exame = Exame.offset(rand(Exame.count)).first if Exame.present?
+  end
+
 end

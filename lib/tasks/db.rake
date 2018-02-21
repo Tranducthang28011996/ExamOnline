@@ -42,8 +42,14 @@ namespace :db do
         end
       end
     end
-    # Tao cau hoi
 
     puts "Create ok!!!!!!!!!!!!"
   end
+
+  # task remake_exames: :environment do
+  # end
+
+  # task remake_anwser: :environmnet doe
+
+  # end
 end

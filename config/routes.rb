@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       resource :exames
       post 'start', to: "exames#start_game"
       get 'result', to: "exames#result"
-      get :unfollow
     end
   end
 end

@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   include RoomsHelper
   before_action :check_show_roo, only: :show
   before_action :make_exame, only: :create
-  
+
   def index
     @rooms = Room.all
   end
