@@ -10,16 +10,16 @@
         <%= image_tag "question.png" %>
       </div>
       <div class="question-exam" data-number-room="<%= @number_room %>">
-        <span>Huyền có 20 bút chì màu, biết Huyền đã làm mất 4 chiếc bút chì màu. Số bút chì màu còn lại Huyền chia đều cho 2 em. Hỏi mỗi em có bao nhiêu bút chì màu?</span>
+        <span><%= @question.name %></span>
       </div>
       <div class="answer-exam">
         <div class="answer-exam-left">
-          <div class="pointer"><span>5 Bút chì màu</span></div>
-          <div class="pointer"><span>6 Bút chì màu</span></div>
+          <div class="pointer dap-an-a"><span data-question-exam-id ="<%= @question.id %>"><%= @anwser.first.name %></span></div>
+          <div class="pointer dap-an-b"><span data-question-exam-id ="<%= @question.id %>"><%= @anwser.last.name %></span></div>
         </div>
         <div class="answer-exam-right">
-          <div class="pointer-two"><span>7 Bút chì màu</span></div>
-          <div class="pointer-two"><span>8 Bút chì màu</span></div>
+          <div class="pointer-two dap-an-c"><span data-question-exam-id ="<%= @question.id %>"><%= @anwser.second.name %></span></div>
+          <div class="pointer-two dap-an-d"><span data-question-exam-id ="<%= @question.id %>"><%= @anwser.third.name %></span></div>
         </div>
       </div>
       <div class="totoal-question-exam">
@@ -31,19 +31,12 @@
         <span>BẢNG XẾP HẠNG</span>
       </div>
       <div class="content-rank">
+        <% @room.following.order(:created_at).each do |user| %>
         <div class="play-rank">
-          <span><b>1-</b> Tran Duc Thang  <b>(1996)</b></span>
+          <span><b></b><%= user.name %> <b>(<%= ScoreProvisional.find_by(user_id: current_user).score %>)</b></span>
         </div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
-        <div class="play-rank"></div>
       </div>
+      <% end %>
       <div class="footer-rank">
 
       </div>
@@ -71,10 +64,16 @@
         i: sessionStorage.getItem("number_question"),
         exame_id: sessionStorage.getItem("exame_id")
       },success: function(result) {
+        console.log(result.status);
         if(result.status == "1"){
           window.location.replace(result.url);
         }else{
+          $('.answer-exam').attr('data-question-exam-id',result.question_id);
           $('.question-exam span').html(result.question);
+          $('.dap-an-a span').html(result.anwser_1);
+          $('.dap-an-c span').html(result.anwser_2);
+          $('.dap-an-b span').html(result.anwser_3);
+          $('.dap-an-d span').html(result.anwser_4);
         }
       }
     });
@@ -86,4 +85,66 @@
       loadQuestion();
     }
   }, 30000);
+
+    $('body').on('click', '.dap-an-a span', function(){
+    var id_room = $('.question-exam').data('number-room');
+    var question_id = $(this).data('question-exam-id');
+    alert(question_id);
+    $.ajax({
+      url: '/rooms/' + id_room + '/answers',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        answer: $('.dap-an-a span').html(),
+        question_id: question_id
+      },success: function(result) {
+
+      }
+    });
+  });
+  $('body').on('click', '.dap-an-b span', function(){
+    var id_room = $('.question-exam').data('number-room');
+    var question_id = $(this).data('question-exam-id')
+    $.ajax({
+      url: '/rooms/' + id_room + '/answers',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        answer: $('.dap-an-b span').html(),
+        question_id: question_id
+      },success: function(result) {
+
+      }
+    });
+  });
+  $('body').on('click', '.dap-an-c span', function(){
+    var id_room = $('.question-exam').data('number-room');
+    var question_id = $(this).data('question-exam-id')
+    $.ajax({
+      url: '/rooms/' + id_room + '/answers',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        answer: $('.dap-an-c span').html(),
+        question_id: question_id
+      },success: function(result) {
+
+      }
+    });
+  });
+  $('body').on('click', '.dap-an-d span', function(){
+    var id_room = $('.question-exam').data('number-room');
+    var question_id = $(this).data('question-exam-id')
+    $.ajax({
+      url: '/rooms/' + id_room + '/answers',
+      type: 'GET',
+      dataType: 'json',
+      data: {
+        answer: $('.dap-an-d span').html(),
+        question_id: question_id
+      },success: function(result) {
+
+      }
+    });
+  });
 </script>

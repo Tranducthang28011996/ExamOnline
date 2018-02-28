@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211044030) do
+ActiveRecord::Schema.define(version: 20180228170118) do
 
   create_table "answsers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "name"
@@ -61,11 +61,13 @@ ActiveRecord::Schema.define(version: 20180211044030) do
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "name"
+    t.text "answser"
     t.bigint "subject_id"
     t.bigint "class_room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["class_room_id"], name: "index_questions_on_class_room_id"
+    t.index ["subject_id"], name: "index_questions_on_subject_id"
   end
 
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -81,12 +83,21 @@ ActiveRecord::Schema.define(version: 20180211044030) do
 
   create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "level"
     t.integer "owner"
     t.integer "user_quantity"
     t.integer "class_room_id"
     t.integer "subject_id"
     t.integer "exame_id"
+    t.integer "room_status", default: 0
+    t.integer "number_question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "score_provisionals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.integer "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -142,6 +153,7 @@ ActiveRecord::Schema.define(version: 20180211044030) do
   add_foreign_key "exame_questions", "exames"
   add_foreign_key "exame_questions", "questions"
   add_foreign_key "questions", "class_rooms"
+  add_foreign_key "questions", "subjects"
   add_foreign_key "scores", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"

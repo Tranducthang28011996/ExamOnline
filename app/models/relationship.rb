@@ -5,6 +5,9 @@ class Relationship < ApplicationRecord
   after_destroy :make_notification_leave_room
 
   scope :created_sort, ->{order created_at: :desc}
+  scope :is_not_start, -> room_id do
+    (where follower_id: room_id, status: 0).count
+  end
 
   private
 
